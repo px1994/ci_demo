@@ -1,27 +1,29 @@
 name: CI Demo
 
-on: push   # assistant
-
+on:
+  push:
 
 jobs:
-    lint: # name
-        runs_on: ubuntu-latest  # runner
+  lint:
+    runs-on: ubuntu-latest
 
-        steps: 
-            - name: Checkout code # pull the klatest code from runner
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: Setup Python
-              uses: actions/setup-python@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-            - name: install dependencies
-              run: 
-                python -m pip install --upgrade pip
-                pip install flake8
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8
 
-              - name: Run flake8 
-                run: 
-                   flake8 example.py  
+      - name: Run flake8
+        run: |
+          flake8 example.py
 
 
 
