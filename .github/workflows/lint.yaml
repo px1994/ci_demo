@@ -32,6 +32,24 @@ jobs:
         run: |
           flake8 example.py
 
+  test:
+    name: Unit Testing
+    runs-on: ubuntu-latest
+    needs: lint
+
+    steps:
+
+      - name: Checkout Code # code checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python # python code
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Run unit test # run unit test
+        run: |
+          python -m unittest discover
 
 
 
